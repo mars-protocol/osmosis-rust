@@ -1,6 +1,7 @@
 use osmosis_std_derive::CosmwasmExt;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
+#[derive(serde::Serialize, serde::Deserialize, schemars::JsonSchema)]
 pub enum Downtime {
     Duration30s = 0,
     Duration1m = 1,

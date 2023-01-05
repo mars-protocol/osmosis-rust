@@ -12,7 +12,7 @@ use syn::__private::quote::__private::TokenStream as TokenStream2;
 use syn::__private::quote::__private::TokenTree;
 use syn::__private::quote::format_ident;
 use syn::__private::quote::quote;
-use syn::{parse_quote, Attribute, Fields, Ident, Item, ItemStruct, Type};
+use syn::{parse_quote, Attribute, Fields, Ident, Item, ItemEnum, ItemStruct, Type};
 
 /// Regex substitutions to apply to the prost-generated output
 pub const REPLACEMENTS: &[(&str, &str)] = &[
@@ -123,6 +123,16 @@ pub fn append_attrs(src: &Path, s: &ItemStruct, descriptor: &FileDescriptorSet) 
     }
 
     s
+}
+
+pub fn append_attrs_enum(e: &ItemEnum) -> ItemEnum {
+    let mut e = e.clone();
+
+    e.attrs.append(&mut vec![
+        syn::parse_quote! { #[derive(serde::Serialize, serde::Deserialize, schemars::JsonSchema)] },
+    ]);
+
+    e
 }
 
 pub fn allow_serde_int_as_str(s: ItemStruct) -> ItemStruct {

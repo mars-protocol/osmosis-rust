@@ -1,21 +1,4 @@
 use osmosis_std_derive::CosmwasmExt;
-/// Params defines the parameters for the module.
-#[derive(
-    Clone,
-    PartialEq,
-    Eq,
-    ::prost::Message,
-    serde::Serialize,
-    serde::Deserialize,
-    schemars::JsonSchema,
-    CosmwasmExt,
-)]
-#[proto_message(type_url = "/osmosis.protorev.v1beta1.Params")]
-pub struct Params {
-    /// Boolean whether the module is going to be enabled
-    #[prost(bool, tag = "1")]
-    pub enabled: bool,
-}
 /// TokenPairArbRoutes tracks all of the hot routes for a given pair of tokens
 #[derive(
     Clone,
@@ -113,69 +96,6 @@ pub struct PoolStatistics {
     )]
     pub pool_id: u64,
 }
-/// SetProtoRevEnabledProposal is a gov Content type to update whether the
-/// protorev module is enabled
-#[derive(
-    Clone,
-    PartialEq,
-    Eq,
-    ::prost::Message,
-    serde::Serialize,
-    serde::Deserialize,
-    schemars::JsonSchema,
-    CosmwasmExt,
-)]
-#[proto_message(type_url = "/osmosis.protorev.v1beta1.SetProtoRevEnabledProposal")]
-pub struct SetProtoRevEnabledProposal {
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(bool, tag = "3")]
-    pub enabled: bool,
-}
-/// SetProtoRevAdminAccountProposal is a gov Content type to set the admin
-/// account that will receive permissions to alter hot routes and set the
-/// developer address that will be receiving a share of profits from the module
-#[derive(
-    Clone,
-    PartialEq,
-    Eq,
-    ::prost::Message,
-    serde::Serialize,
-    serde::Deserialize,
-    schemars::JsonSchema,
-    CosmwasmExt,
-)]
-#[proto_message(type_url = "/osmosis.protorev.v1beta1.SetProtoRevAdminAccountProposal")]
-pub struct SetProtoRevAdminAccountProposal {
-    #[prost(string, tag = "1")]
-    pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub account: ::prost::alloc::string::String,
-}
-/// GenesisState defines the protorev module's genesis state.
-#[derive(
-    Clone,
-    PartialEq,
-    Eq,
-    ::prost::Message,
-    serde::Serialize,
-    serde::Deserialize,
-    schemars::JsonSchema,
-    CosmwasmExt,
-)]
-#[proto_message(type_url = "/osmosis.protorev.v1beta1.GenesisState")]
-pub struct GenesisState {
-    /// Module Parameters
-    #[prost(message, optional, tag = "1")]
-    pub params: ::core::option::Option<Params>,
-    /// Hot routes that are configured on genesis
-    #[prost(message, repeated, tag = "2")]
-    pub token_pairs: ::prost::alloc::vec::Vec<TokenPairArbRoutes>,
-}
 /// MsgSetHotRoutes defines the Msg/SetHotRoutes request type.
 #[derive(
     Clone,
@@ -244,6 +164,66 @@ pub struct MsgSetDeveloperAccount {
 )]
 #[proto_message(type_url = "/osmosis.protorev.v1beta1.MsgSetDeveloperAccountResponse")]
 pub struct MsgSetDeveloperAccountResponse {}
+/// SetProtoRevEnabledProposal is a gov Content type to update whether the
+/// protorev module is enabled
+#[derive(
+    Clone,
+    PartialEq,
+    Eq,
+    ::prost::Message,
+    serde::Serialize,
+    serde::Deserialize,
+    schemars::JsonSchema,
+    CosmwasmExt,
+)]
+#[proto_message(type_url = "/osmosis.protorev.v1beta1.SetProtoRevEnabledProposal")]
+pub struct SetProtoRevEnabledProposal {
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(bool, tag = "3")]
+    pub enabled: bool,
+}
+/// SetProtoRevAdminAccountProposal is a gov Content type to set the admin
+/// account that will receive permissions to alter hot routes and set the
+/// developer address that will be receiving a share of profits from the module
+#[derive(
+    Clone,
+    PartialEq,
+    Eq,
+    ::prost::Message,
+    serde::Serialize,
+    serde::Deserialize,
+    schemars::JsonSchema,
+    CosmwasmExt,
+)]
+#[proto_message(type_url = "/osmosis.protorev.v1beta1.SetProtoRevAdminAccountProposal")]
+pub struct SetProtoRevAdminAccountProposal {
+    #[prost(string, tag = "1")]
+    pub title: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub account: ::prost::alloc::string::String,
+}
+/// Params defines the parameters for the module.
+#[derive(
+    Clone,
+    PartialEq,
+    Eq,
+    ::prost::Message,
+    serde::Serialize,
+    serde::Deserialize,
+    schemars::JsonSchema,
+    CosmwasmExt,
+)]
+#[proto_message(type_url = "/osmosis.protorev.v1beta1.Params")]
+pub struct Params {
+    /// Boolean whether the module is going to be enabled
+    #[prost(bool, tag = "1")]
+    pub enabled: bool,
+}
 /// QueryParamsRequest is request type for the Query/Params RPC method.
 #[derive(
     Clone,
@@ -508,6 +488,26 @@ pub struct QueryGetProtoRevTokenPairArbRoutesResponse {
     /// arbitraging
     #[prost(message, repeated, tag = "1")]
     pub routes: ::prost::alloc::vec::Vec<TokenPairArbRoutes>,
+}
+/// GenesisState defines the protorev module's genesis state.
+#[derive(
+    Clone,
+    PartialEq,
+    Eq,
+    ::prost::Message,
+    serde::Serialize,
+    serde::Deserialize,
+    schemars::JsonSchema,
+    CosmwasmExt,
+)]
+#[proto_message(type_url = "/osmosis.protorev.v1beta1.GenesisState")]
+pub struct GenesisState {
+    /// Module Parameters
+    #[prost(message, optional, tag = "1")]
+    pub params: ::core::option::Option<Params>,
+    /// Hot routes that are configured on genesis
+    #[prost(message, repeated, tag = "2")]
+    pub token_pairs: ::prost::alloc::vec::Vec<TokenPairArbRoutes>,
 }
 pub struct ProtorevQuerier<'a, Q: cosmwasm_std::CustomQuery> {
     querier: &'a cosmwasm_std::QuerierWrapper<'a, Q>,

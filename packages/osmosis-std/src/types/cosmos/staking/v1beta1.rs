@@ -498,6 +498,7 @@ pub struct Pool {
 /// BondStatus is the status of a validator.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
+#[derive(serde::Serialize, serde::Deserialize, schemars::JsonSchema)]
 pub enum BondStatus {
     /// UNSPECIFIED defines an invalid validator status.
     Unspecified = 0,
